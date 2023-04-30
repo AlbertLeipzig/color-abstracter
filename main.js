@@ -1,5 +1,5 @@
 import mapper from './mapHslValuesToKeys.js';
-import reduceValues from './reduceValues.js';
+// import reduceValues from './reduceValues.js';
 
 // convert single color code to rgb
 
@@ -111,10 +111,6 @@ const mapValues = (rawColors) => {
   );
 
   const colorMap = mapper(editedColors, hueMap, saturationMap, lightMap);
-
-  const reducedValues = reduceValues(hueMap);
-
-  console.log(reducedValues);
 
   return colorMap;
 };

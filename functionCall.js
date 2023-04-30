@@ -13,3 +13,4 @@ const rawColors = {
 };
 
 const list = convertColor(rawColors);
+console.log(list)
