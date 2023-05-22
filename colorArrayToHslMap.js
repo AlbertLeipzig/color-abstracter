@@ -1,17 +1,34 @@
-const singleColorToHsl = (entry, hueMap, saturationMap, lightMap) => {
-  const formattedColor = new Map();
+function mapColorToValues(color, hueMap, saturationMap, lightMap) {
+  const [h, s, l] = color;
 
-  /* console.log('key: ', key);
-  console.log('value: ', value); */
-  const color = entry
-  return color;
-};
+  let formattedColor = [];
+
+  for (const [key, mapValue] of hueMap.entries()) {
+    if (mapValue === h) {
+      formattedColor.push(key);
+    }
+  }
+
+  for (const [key, mapValue] of saturationMap.entries()) {
+    if (mapValue === s) {
+      formattedColor.push(key);
+    }
+  }
+
+  for (const [key, mapValue] of lightMap.entries()) {
+    if (mapValue === l) {
+      formattedColor.push(key);
+    }
+  }
+  
+  return formattedColor;
+}
 
 const colorArrayToHslMap = (colorArray, hueMap, saturationMap, lightMap) => {
   const formattedColor = {};
 
   Object.entries(colorArray).forEach(([colorName, colorValues]) => {
-    const singleFormattedColor = singleColorToHsl(
+    const singleFormattedColor = mapColorToValues(
       colorValues,
       hueMap,
       saturationMap,

@@ -26,6 +26,10 @@ const hueMap = map.hueMap;
 const saturationMap = map.saturationMap;
 const lightMap = map.lightMap;
 
+console.log("HUE MAP :", hueMap);
+console.log("SAT MAP :", saturationMap);
+console.log("LIGHT MAP :", lightMap);
+
 // a function that takes every value from the original array and changes it to the hueMap, saturationMap and lightMap
 
 colorArrayToHslMap(hslArray, hueMap, saturationMap, lightMap);
