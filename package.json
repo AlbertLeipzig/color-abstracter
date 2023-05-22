@@ -9,5 +9,13 @@
   "keywords": [],
   "author": "albertleipzig <albertclemvill@gmail.com>",
   "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertLeipzig/color-abstracter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AlbertLeipzig/color-abstracter/issues"
+  },
+  "homepage": "https://github.com/AlbertLeipzig/color-abstracter#readme",
   "description": ""
 }

@@ -1,5 +1,4 @@
-// convert single color code to rgb
-
+// convert rgb color to hslArray
 const hexToRgb = (hex) => {
   let r = parseInt(hex.substring(1, 3), 16);
   let g = parseInt(hex.substring(3, 5), 16);
@@ -9,8 +8,7 @@ const hexToRgb = (hex) => {
   return color;
 };
 
-// convert single color code to hsl
-
+// convert rgb color to hslArray
 const rgbToHsl = (rgb) => {
   const values = rgb
     .substring(4, rgb.length - 1)
@@ -43,18 +41,36 @@ const rgbToHsl = (rgb) => {
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
-  return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+  return [h, s, l];
+};
+
+// convert hsl color to hslArray
+
+const hslToArray = (hsl) => {
+  const values = hsl
+    .substring(4, hsl.length - 1)
+    .split(',')
+    .map((value) => parseInt(value));
+
+  const h = values[0];
+  const s = values[1];
+  const l = values[2];
+  return [h, s, l];
 };
 
 const colorCodeToHsl = (value) => {
   const firstLetter = value.slice(0, 1);
   if (firstLetter === 'r') {
+    /* console.log('FROM RGB VALUE ', rgbToHsl(value)); */
     return rgbToHsl(value);
   } else if (firstLetter === '#') {
+    /* console.log('FROM HEX VALUE ', hexToRgb(value)); */
     return hexToRgb(value);
   } else if (firstLetter === 'h') {
-    return value;
+    /* console.log('FROM HSL VALUE ', value); */
+    return hslToArray(value);
   } else {
+    /* console.log('WOOOOT?'); */
     return "something's fishy";
   }
 };

@@ -1,28 +1,39 @@
-const mapper = (hslColors, hueMap, saturationMap, lightMap) => {
-  const colors = { ...hslColors };
-  function getKeyByValue(object, value) {
-    return [...object.entries()].find(([key, val]) => val === value)?.[0];
-  }
+const mapper = (hslColors) => {
+  const values = Object.values(hslColors);
 
-  for (const [colorKey, colorValue] of Object.entries(colors)) {
-    const hueKey = getKeyByValue(hueMap, colorValue[0]);
-    const saturationKey = getKeyByValue(saturationMap, colorValue[1]);
-    const lightKey = getKeyByValue(lightMap, colorValue[2]);
+  let rawHueArray = [];
+  let rawSaturationArray = [];
+  let rawLightArray = [];
 
-    if (hueKey) {
-      colors[colorKey][0] = hueKey;
-    }
+  values.forEach((values) => {
+    const hue = values[0];
+    const saturation = values[1];
+    const light = values[2];
 
-    if (saturationKey) {
-      colors[colorKey][1] = saturationKey;
-    }
+    rawHueArray.push(hue);
+    rawSaturationArray.push(saturation);
+    rawLightArray.push(light);
+  });
 
-    if (lightKey) {
-      colors[colorKey][2] = lightKey;
-    }
-  }
+  rawHueArray.sort((a, b) => a - b);
+  rawSaturationArray.sort((a, b) => a - b);
+  rawLightArray.sort((a, b) => a - b);
 
-  return colors;
+  const hueSet = new Set(rawHueArray.sort((a, b) => a - b));
+  const saturationSet = new Set(rawSaturationArray.sort((a, b) => a - b));
+  const lightSet = new Set(rawLightArray.sort((a, b) => a - b));
+
+  const hueMap = new Map([...hueSet].map((value, index) => [index, value]));
+  const saturationMap = new Map(
+    [...saturationSet].map((value, index) => [index, value])
+  );
+  const lightMap = new Map([...lightSet].map((value, index) => [index, value]));
+
+  return {
+    hueMap,
+    saturationMap,
+    lightMap,
+  };
 };
 
 export default mapper;
