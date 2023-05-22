@@ -1,8 +1,7 @@
 /* IMPORTS */
-import colorCodeToHsl from '../convertSingleColor.js';
+import colorCodeToHsl from './convertSingleColor.js';
 import mapper from './mapHslValuesToKeys.js';
 // import convertColorArrayToHslValues from './colorArrayToHslMap.js';
-
 
 /* DEFINE DOM ELEMENTS */
 const addColorButton = document.querySelector('#addColor');
@@ -39,8 +38,8 @@ const displayColors = () => {
 
 const addColor = () => {
   const colorNameInput = prompt('Enter color name');
-  const processedColorValue = prompt('Enter color value (in HEX format)');
-  colorMap.set(colorNameInput, colorCodeToHsl(processedColorValue));
+  const processedColorValue = prompt('Enter color value (in RGB / HEX or HSL)');
+  colorMap.set(colorNameInput, processedColorValue);
   displayColors();
 };
 
